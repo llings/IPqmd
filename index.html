@@ -16,6 +16,13 @@
 function changeImage()
 {
 var value = document.getElementById('speak').value;//重点在此
+if(value.replace(/(^s*)|(s*$)/g, "").length ==0){
+element=document.getElementById('myimage')
+element.src="https://apa.me/news/";
+document.getElementById('url').value =  'https://apa.me/news/' 
+document.getElementById('code').value = '[img]https://apa.me/news/'  + '[/img]';
+}
+else{
 var str = value;  
 var base = new Base64();  
 var result = base.encode(str);  
@@ -26,6 +33,7 @@ element.src="https://apa.me/news/?s="+result;
 document.getElementById('url').value =  'https://apa.me/news/?s=' + result 
 document.getElementById('code').value = '[img]https://apa.me/news/?s=' + result + '[/img]';
 //输出代码
+}
 }
 </script>
     <div class="col-xs-12 col-sm-10 col-md-8 col-lg-5 center-block" style="float: none;">
