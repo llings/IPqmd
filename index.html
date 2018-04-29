@@ -10,8 +10,31 @@
   <link href="css/font-awesome.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="css/main.css">
   <script type="text/javascript" src="js/base64.js"></script>
+  <style>
+    #toast{width:300px;position:fixed;top:2%;right:1%;z-index:999999;background-color:rgba(0,0,0,.7);border-radius:5px;color:#fff;padding:10px 0;text-align:center;-webkit-animation: zoomOut .4s ease both;animation: zoomOut .4s ease both;}
+    @keyframes zoomOut { 0% { opacity: 0; transform: scale(.6); } 100% { opacity: 1; transform: scale(1); } }
+  </style>
 </head>
 <body>
+<script>
+function showToast(message, t) {
+var alert = document.getElementById("toast");
+if(alert == null){
+alert = document.createElement("div");
+alert.id = 'toast';
+alert.innerText = message;
+} else {
+alert.style.opacity = .9;
+}
+document.body.appendChild(alert);
+t = t ? t : 1000;
+toast_timer = setTimeout(function() {
+if(alert) {
+document.body.removeChild(alert);
+}
+}, t);
+}
+</script>
 <script>
 function changeImage()
 {
@@ -21,6 +44,7 @@ element=document.getElementById('myimage')
 element.src="https://apa.me/news/";
 document.getElementById('url').value =  'https://apa.me/news/' 
 document.getElementById('code').value = '[img]https://apa.me/news/'  + '[/img]';
+showToast('生成网址成功！', 2500);
 }
 else{
 var str = value;  
@@ -32,6 +56,7 @@ element.src="https://apa.me/news/?s="+result;
 //显示图片
 document.getElementById('url').value =  'https://apa.me/news/?s=' + result 
 document.getElementById('code').value = '[img]https://apa.me/news/?s=' + result + '[/img]';
+showToast('生成网址成功！'+'['+str+']', 3500);
 //输出代码
 }
 }
@@ -85,8 +110,9 @@ document.getElementById('code').value = '[img]https://apa.me/news/?s=' + result 
             </div>
         <!--显示-->
         <!--底部导航-->  
-            <div class="panel panel-default">
-                <center>  <div class="panel-body"><b>版权所有</b> </div></center>
+      			<center>收藏本站：Ctrl+D</center>
+            <div class="panel panel-default">	
+                <center><div class="panel-body"><b>版权所有</b> </div></center>
             </div>
         <!--底部导航-->
 </div>
