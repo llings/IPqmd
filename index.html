@@ -1,119 +1,145 @@
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-  <title>IP签名档在线制作V1.0</title>
-  <meta name="keywords" content="XHAPI,一言,PHP随机图,PHP搜索引擎搜录,论坛IP签名档" />
-  <meta name="description" content="XHAPI提供一言,PHP随机图,搜索引擎搜录查询,论坛IP签名档服务.">
-  <link rel="icon" href="https://www.xhboke.com/wp-content/uploads/2018/01/favicon.png">
-  <link href="css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="css/font-awesome.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/main.css">
-  <script type="text/javascript" src="js/base64.js"></script>
-  <style>
-    #toast{width:300px;position:fixed;top:2%;right:1%;z-index:999999;background-color:rgba(0,0,0,.7);border-radius:5px;color:#fff;padding:10px 0;text-align:center;-webkit-animation: zoomOut .4s ease both;animation: zoomOut .4s ease both;}
-    @keyframes zoomOut { 0% { opacity: 0; transform: scale(.6); } 100% { opacity: 1; transform: scale(1); } }
-  </style>
-</head>
-<body>
-<script>
-function showToast(message, t) {
-var alert = document.getElementById("toast");
-if(alert == null){
-alert = document.createElement("div");
-alert.id = 'toast';
-alert.innerText = message;
-} else {
-alert.style.opacity = .9;
-}
-document.body.appendChild(alert);
-t = t ? t : 1000;
-toast_timer = setTimeout(function() {
-if(alert) {
-document.body.removeChild(alert);
-}
-}, t);
-}
-</script>
-<script>
-function changeImage()
-{
-var value = document.getElementById('speak').value;//重点在此
-if(value.replace(/(^s*)|(s*$)/g, "").length ==0){
-element=document.getElementById('myimage')
-element.src="https://apa.me/news/";
-document.getElementById('url').value =  'https://apa.me/news/' 
-document.getElementById('code').value = '[img]https://apa.me/news/'  + '[/img]';
-showToast('生成网址成功！', 2500);
-}
-else{
-var str = value;  
-var base = new Base64();  
-var result = base.encode(str);  
-//这里是base64编码
-element=document.getElementById('myimage')
-element.src="https://apa.me/news/?s="+result;
-//显示图片
-document.getElementById('url').value =  'https://apa.me/news/?s=' + result 
-document.getElementById('code').value = '[img]https://apa.me/news/?s=' + result + '[/img]';
-showToast('生成网址成功！'+'['+str+']', 3500);
-//输出代码
-}
-}
-</script>
-    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-5 center-block" style="float: none;">
-        <div class="widget"><br>
-            <!--logo-->
-            <div class="widget-content themed-background-flat text-center" style="background-image: url(img/head.png);background-size: 100% 100%;">
-                <a href="javascript:void(0)">
-                    <img src="https://q4.qlogo.cn/headimg_dl?dst_uin=16027942&spec=100" alt="Avatar" width="80" alt="avatar" style="height: auto filter: alpha(Opacity=80);-moz-opacity: 0.80;opacity: 0.80;" class="img-circle img-thumbnail img-thumbnail-avatar-1x">
-                </a>
-            </div>
-            <!--logo-->
-            <!--logo下面按钮-->
-            <div class="widget-content themed-background-muted text-center ">
-                <div class="btn-group themed-background-muted ">
-                    <a href="https://www.xhboke.com/" target="_blank" data-toggle="modal" target="_blank" class="btn btn-effect-ripple btn-default"><span style="font-weight:bold">博客</span></a>
-                    <a href="https://apa.me/" target="_blank" class="btn btn-effect-ripple btn-default"> <span style="font-weight:bold">API</span></a>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+        <title>IP签名档在线制作V1.0</title>
+        <meta name="keywords" content="XHAPI,一言,PHP随机图,PHP搜索引擎搜录,论坛IP签名档" />
+        <meta name="description" content="XHAPI提供一言,PHP随机图,搜索引擎搜录查询,论坛IP签名档服务.">
+        <link rel="icon" href="https://www.xhboke.com/wp-content/uploads/2018/01/favicon.png">
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/main.css">
+        <script type="text/javascript" src="js/base64.js"></script>
+        <style>
+            #toast{width:300px;position:fixed;top:2%;right:1%;z-index:999999;background-color:rgba(0,0,0,.7);border-radius:5px;color:#fff;padding:10px 0;text-align:center;-webkit-animation: zoomOut .4s ease both;animation: zoomOut .4s ease both;}
+            @keyframes zoomOut { 0% { opacity: 0; transform: scale(.6); } 100% { opacity: 1; transform: scale(1); } }
+        </style>
+    </head>
+    <body>
+        <script>
+            function showToast(message, t) {
+                var alert = document.getElementById("toast");
+                if(alert == null){
+                alert = document.createElement("div");
+                alert.id = 'toast';
+                alert.innerText = message;
+                } else {
+                alert.style.opacity = .9;
+                }
+                document.body.appendChild(alert);
+                t = t ? t : 1000;
+                toast_timer = setTimeout(function() {
+                if(alert) {
+                document.body.removeChild(alert);
+                }
+                }, t);
+                }
+        </script>
+        <script>
+            function changeImage()
+            {
+            var value = document.getElementById('speak').value;//重点在此
+            if(value.replace(/(^s*)|(s*$)/g, "").length ==0){
+            element=document.getElementById('myimage')
+            element.src="https://apa.me/news/";
+            document.getElementById('url').value =  'https://apa.me/news/' 
+            document.getElementById('code').value = '[img]https://apa.me/news/'  + '[/img]';
+            showToast('生成网址成功！', 2500);
+            }
+            else{
+            var str = value;  
+            var base = new Base64();  
+            var result = base.encode(str);  
+            //这里是base64编码
+            element=document.getElementById('myimage')
+            element.src="https://apa.me/news/?s="+result;
+            //显示图片
+            document.getElementById('url').value =  'https://apa.me/news/?s=' + result 
+            document.getElementById('code').value = '[img]https://apa.me/news/?s=' + result + '[/img]';
+            showToast('生成网址成功！'+'['+str+']', 3500);
+            //输出代码
+            }
+            }
+        </script>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-5 center-block" style="float: none;">
+            <div class="widget"><br>
+                <!--logo-->
+                <div class="widget-content themed-background-flat text-center" style="background-image: url(img/head.png);background-size: 100% 100%;">
+                    <a href="javascript:void(0)">
+                        <img src="https://q4.qlogo.cn/headimg_dl?dst_uin=16027942&spec=100" alt="Avatar" width="80" alt="avatar" style="height: auto filter: alpha(Opacity=80);-moz-opacity: 0.80;opacity: 0.80;" class="img-circle img-thumbnail img-thumbnail-avatar-1x">
+                    </a>
                 </div>
-                <div id="mustsee" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                <div id="mustsee" class="panel-collapse collapse in" aria-expanded="true" style=""></div></div>
-            </div>
-        </div>  
-        <!--生成-->
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">个性签名</div>
-                    <input type="text" id="speak"  class="form-control" placeholder="（输入你的个性签名）"/><div class="input-group-addon" > 
+                <!--logo-->
+                <!--logo下面按钮-->
+                <div class="widget-content themed-background-muted text-center ">
+                    <div class="btn-group themed-background-muted ">
+                        <a href="https://www.xhboke.com/" target="_blank" data-toggle="modal" target="_blank" class="btn btn-effect-ripple btn-default"><span style="font-weight:bold">博客</span></a>
+                        <a href="https://apa.me/" target="_blank" class="btn btn-effect-ripple btn-default"> <span style="font-weight:bold">API</span></a>
+                    </div>
+                    <div id="mustsee" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                    <div id="mustsee" class="panel-collapse collapse in" aria-expanded="true" style=""></div></div>
                 </div>
+            </div>  
+            <!--生成-->
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">个性签名</div>
+                        <input type="text" id="speak"  class="form-control" placeholder="（输入你的个性签名）"/><div class="input-group-addon" > 
+                    </div>
+                    </div>
                 </div>
-            </div>
-        <input type="submit" id="submit_query" class="btn btn-primary btn-block" onclick="changeImage()" value="立即生成">
-        <!--生成-->
-        <!--显示-->
-            <div class="tab-pane">      
-                <div class="col-xs-12 well well-sm animation-fadeInQuick2" >
-                    <div class="widget-content text-left clearfix">
-                        <center><img id="myimage" style="max-width:100%;height:auto;" src="img/img.png"><br><hr></center>
-                        <div class="form-group">
-                            <div class="input-group"><div class="input-group-addon" id="inputname">生成网址</div>
-                                <input type="text" name="url" id="url" value="" class="form-control" />
+            <input type="submit" id="submit_query" class="btn btn-primary btn-block" onclick="changeImage()" value="立即生成">
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">使用说明</button>
+            <!--生成-->
+            <!--显示-->
+                <div class="tab-pane">      
+                    <div class="col-xs-12 well well-sm animation-fadeInQuick2" >
+                        <div class="widget-content text-left clearfix">
+                            <center><img id="myimage" style="max-width:100%;height:auto;" src="img/img.png"><br><hr></center>
+                            <div class="form-group">
+                                <div class="input-group"><div class="input-group-addon" id="inputname">生成网址</div>
+                                    <input type="text" name="url" id="url" value="" class="form-control" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group"><div class="input-group-addon" id="inputname">生成代码</div>
-                                <input type="text" name="code" id="code" value="" class="form-control" />
+                            <div class="form-group">
+                                <div class="input-group"><div class="input-group-addon" id="inputname">生成代码</div>
+                                    <input type="text" name="code" id="code" value="" class="form-control" />
+                                </div>
                             </div>
-                        </div>
+                        </div>  
                     </div>  
-                </div>  
+                </div>
+            <!--显示-->
+            <!--底部导航-->  
+                <center>收藏本站：Ctrl+D</center>
+                <div class="panel panel-default">   
+                    <center><div class="panel-body"><b>版权所有</b> </div></center>
+                </div>
+            <!--底部导航-->
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">使用说明</h4>
+                        </div>
+                    <div class="modal-body">
+                        论坛图片自定义大小，一般情况下代码是：<br />[img=宽度,高度]https://apa.me/news/[/img]<hr>
+                        生成的代码是<b>论坛</b>代码，直接复制即可
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                    </div>
+                    </div>
+                </div>
             </div>
-        <!--显示-->
-        <!--底部导航-->  
-      			<center>收藏本站：Ctrl+D</center>
-            <div class="panel panel-default">	
-                <center><div class="panel-body"><b>版权所有</b> </div></center>
-            </div>
-        <!--底部导航-->
-</div>
-</body>
+        </div>
+        <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>         
+    </body>
+</html>
