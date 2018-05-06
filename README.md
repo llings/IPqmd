@@ -1,6 +1,5 @@
 # 论坛IP签名档PHP源码
 原帖：https://www.xhboke.com/817.html<br />
-论坛IP签名档制作<br />
 演示地址：https://apa.me/news/<br />
 # 制作专属签名档
 网址：域名/?s=base64编码字符<br />
