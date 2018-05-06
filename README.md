@@ -1,8 +1,10 @@
-# 论坛IP签名档
+# 论坛IP签名档PHP源码
+原帖：https://www.xhboke.com/817.html
 论坛IP签名档制作<br />
-演示地址：https://apa.me/zhizuo/<br />
-1.解决了图片溢出的情况<br />
-2.增添了图片地址的显示<br />
-3.增加输入为空的判断<br />
-4.增加修改成功提示信息框<br />
-5.增加使用说明模态框，优化结构<br />
+演示地址：https://apa.me/news/<br />
+# 制作专属签名档
+网址：域名/?s=base64编码字符<br />
+比如：https://apa.me/news/?s=5ryU56S6
+# 注意
+更换图片，请注意使用web图片格式
+适用于虚拟主机和服务器
